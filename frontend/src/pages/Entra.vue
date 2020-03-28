@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: "PageIndex",
+  name: "Entra",
 
   data() {
     return {
