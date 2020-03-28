@@ -82,7 +82,17 @@ module.exports = function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
+      proxy: {
+        '/api': {
+          target: 'https://2.229.191.232',
+          changeOrigin: true,
+        },
+        '/maps': {
+          target: 'https://maps.google.com',
+          changeOrigin: true
+        }
+      }
     },
 
     // animations: 'all', // --- includes all animations

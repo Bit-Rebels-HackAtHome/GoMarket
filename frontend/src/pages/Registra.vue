@@ -55,7 +55,10 @@ export default {
   },
 
   methods: {
-    onSubmit: function(event) {}
+    onSubmit: function(event) {
+      console.log("Sono qui");
+      this.$store.dispatch("utente/registra", this);
+    }
   },
 
   computed: {
