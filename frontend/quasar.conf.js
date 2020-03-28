@@ -46,7 +46,8 @@ module.exports = function (ctx) {
 
       components: [
         'QBtn',
-        'QChip'
+        'QChip',
+        'QCard'
     ],
       directives: [],
 

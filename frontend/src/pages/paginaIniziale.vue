@@ -1,6 +1,19 @@
 <template>
   <q-page class="column flex-center justify-evenly">
-    <div class="column flex-center">
+        
+    <div class="column col-6 flex-center">
+        <q-btn 
+        round
+        color="red" 
+        size="xl" 
+        icon="timer" />
+        <q-chip 
+        square>
+        Attesa
+        </q-chip>
+    </div>
+
+    <div class="column col-6 flex-center">
         <q-btn 
         round
         color="primary" 
@@ -11,7 +24,9 @@
         Registrati ad una coda
         </q-chip>
     </div>
+    
     <div class="column flex-center">
+
         <q-btn 
         round 
         color="secondary" 
@@ -21,6 +36,7 @@
         square>
         Impostazioni
         </q-chip>
+        
     </div>
   </q-page>
 </template>
