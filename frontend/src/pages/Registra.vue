@@ -55,9 +55,7 @@ export default {
   },
 
   methods: {
-    onSubmit: function(event) {
-      console.log(event);
-    }
+    onSubmit: function(event) {}
   },
 
   computed: {

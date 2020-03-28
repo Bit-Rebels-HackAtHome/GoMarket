@@ -1,13 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-// import example from './module-example'
-
-import default_state from './utente/state';
+import utente from './utente';
 
 Vue.use(Vuex)
-
-let state = default_state;
 
 /*
  * If not building with SSR mode, you can
@@ -21,13 +17,19 @@ let state = default_state;
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      state
+      utente
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
     strict: process.env.DEV
-  })
+  });
 
+  if (process.env.DEV && module.hot) {
+    module.hot.accept(['./utente'], () => {
+      const newUtente = require('./utente').default
+      Store.hotUpdate({ modules: { utente: newUtente } })
+    })
+  }
   return Store
 }

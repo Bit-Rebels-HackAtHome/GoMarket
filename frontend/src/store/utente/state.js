@@ -1,4 +1,4 @@
-export default function default_state() {
+export default function () {
   return {
     utente: null,
     impostazioni: null,
