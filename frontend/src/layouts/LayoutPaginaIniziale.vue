@@ -34,7 +34,7 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
+      v-show="leftDrawerOpen"
       bordered
       content-class="bg-grey-1"
     >

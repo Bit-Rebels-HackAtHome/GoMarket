@@ -49,7 +49,11 @@ module.exports = function (ctx) {
         'QChip',
         'QCard',
         'QForm',
-        'QInput'
+        'QInput',
+        'QList',
+        'QItem',
+        'QItemSection',
+        'QItemLabel',
       ],
 
       directives: [],
@@ -82,7 +86,14 @@ module.exports = function (ctx) {
     devServer: {
       https: false,
       port: 8080,
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
+      proxy:{
+        '/maps': {
+          target: 'https://maps.googleapis.com',
+          changeOrigin: true,
+        },
+        
+      }
     },
 
     // animations: 'all', // --- includes all animations
