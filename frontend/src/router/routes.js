@@ -5,15 +5,9 @@ const routes = [
     component: () => import('layouts/LayoutPaginaIniziale.vue'),
     children: [
       { path: '', component: () => import('pages/paginaIniziale.vue') },
+      { path: '/registrati', component: () => import('pages/paginaRegistrazione.vue') },
     ]
   },
-  {
-    path: '/registrati',
-    component: () => import('layouts/LayoutBarraSemplice.vue'),
-    children: [
-      { path: '', component: () => import('pages/paginaRegistrazione.vue') },
-    ]
-  }
 ]
 
 // Always leave this as last one
