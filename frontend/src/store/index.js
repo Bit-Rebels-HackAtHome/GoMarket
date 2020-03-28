@@ -3,7 +3,11 @@ import Vuex from 'vuex'
 
 // import example from './module-example'
 
+import default_state from './utente/state';
+
 Vue.use(Vuex)
+
+let state = default_state;
 
 /*
  * If not building with SSR mode, you can
@@ -17,7 +21,7 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      // example
+      state
     },
 
     // enable strict mode (adds overhead!)
