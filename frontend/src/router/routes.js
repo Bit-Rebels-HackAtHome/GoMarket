@@ -11,9 +11,16 @@ const routes = [
     path: '/registrati',
     component: () => import('layouts/LayoutBarraSemplice.vue'),
     children: [
-      { path: '', component: () => import('pages/paginaRegistrazione.vue') },
+      { path: '', component: () => import('pages/Registra.vue') },
     ]
-  }
+  },
+  {
+    path: '/entra',
+    component: () => import('layouts/LayoutBarraSemplice.vue'),
+    children: [
+      { path: '', component: () => import('pages/Entra.vue') },
+    ]
+  },
 ]
 
 // Always leave this as last one
