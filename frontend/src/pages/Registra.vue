@@ -57,7 +57,8 @@ export default {
           name: spm.name,
           address: spm.formatted_address,
           long: spm.geometry.location.lng,
-          lat: spm.geometry.location.lat
+          lat: spm.geometry.location.lat,
+          id: spm.id,
         });
       });
       console.log(this.supermercati);

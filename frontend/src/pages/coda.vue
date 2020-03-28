@@ -30,6 +30,7 @@ export default {
           address : this.$router.market.address,
           longitudine : this.$router.market.long,
           latitudine : this.$router.market.lat,
+          id : this.$router.market.id,
       }
   }
 };
