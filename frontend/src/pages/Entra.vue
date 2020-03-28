@@ -1,11 +1,5 @@
 <template>
   <q-page class="flex flex-center">
-    <!--
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-full.svg"
-    >
-    -->
 
     <q-form ref="loginForm" @submit="onSubmit" class="g-gutter-sm">
       <q-input
@@ -51,6 +45,7 @@ export default {
   methods: {
     onSubmit: function(event) {
       console.log(event);
+      this.$router.replace('/');
     }
   },
 

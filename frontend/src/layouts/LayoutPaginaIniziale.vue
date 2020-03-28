@@ -2,7 +2,19 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
+
+
         <q-btn
+          v-show="$route.path == '/registrati'"
+          flat
+          dense
+          round
+          icon="arrow_back"
+          @click="$router.go(-1)"          
+        />
+
+        <q-btn
+          v-show="$route.path == '/'"
           flat
           dense
           round
@@ -17,8 +29,6 @@
         <q-icon name="local_grocery_store"/>
         </q-toolbar-title>
 
-
-        <!--div>Quasar v{{ $q.version }}</div-->
       </q-toolbar>
     </q-header>
 
@@ -44,7 +54,10 @@
     </q-drawer>
 
     <q-page-container>
+      
+    <transition name="fade" appear mode="out-in">
       <router-view />
+    </transition>
     </q-page-container>
   </q-layout>
 </template>
@@ -74,3 +87,16 @@ export default {
   }
 }
 </script>
+
+
+<style>
+
+.fade-enter,.fade-leave-to{
+  transition: opacity .15s ease;
+  opacity:0;
+}
+.fade-enter-to,.fade-leave{
+  opacity:1;
+}
+
+</style>
