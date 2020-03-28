@@ -5,20 +5,8 @@ const routes = [
     component: () => import('layouts/LayoutPaginaIniziale.vue'),
     children: [
       { path: '', component: () => import('pages/paginaIniziale.vue') },
-    ]
-  },
-  {
-    path: '/registrati',
-    component: () => import('layouts/LayoutBarraSemplice.vue'),
-    children: [
-      { path: '', component: () => import('pages/Registra.vue') },
-    ]
-  },
-  {
-    path: '/entra',
-    component: () => import('layouts/LayoutBarraSemplice.vue'),
-    children: [
-      { path: '', component: () => import('pages/Entra.vue') },
+      { path: '/registrati', component: () => import('pages/Registra.vue') },
+      { path: '/entra', component: () => import('pages/Entra.vue') },
     ]
   },
 ]
