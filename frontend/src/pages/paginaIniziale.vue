@@ -18,7 +18,8 @@
         round
         color="primary" 
         size="xl" 
-        icon="gps_fixed" />
+        icon="gps_fixed" 
+        @click="$router.push('/registrati')"/>
         <q-chip 
         square>
         Registrati ad una coda
@@ -43,6 +44,6 @@
 
 <script>
 export default {
-  name: "paginaIniziale"
+  name: "paginaIniziale",
 };
 </script>

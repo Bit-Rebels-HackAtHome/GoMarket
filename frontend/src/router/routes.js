@@ -2,10 +2,16 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/LayoutPaginaIniziale.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: 'paginaIniziale', component: () => import('pages/paginaIniziale.vue') }
+      { path: '', component: () => import('pages/paginaIniziale.vue') },
+    ]
+  },
+  {
+    path: '/registrati',
+    component: () => import('layouts/LayoutBarraSemplice.vue'),
+    children: [
+      { path: '', component: () => import('pages/paginaRegistrazione.vue') },
     ]
   }
 ]
