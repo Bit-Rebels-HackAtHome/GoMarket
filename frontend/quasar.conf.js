@@ -93,10 +93,6 @@ module.exports = function (ctx) {
       port: 8080,
       open: true, // opens browser window automatically
       proxy: {
-        '/api': {
-          target: 'https://russelpopi.synology.me/api',
-          changeOrigin: true,
-        },
         '/maps': {
           target: 'https://maps.google.com',
           changeOrigin: true
