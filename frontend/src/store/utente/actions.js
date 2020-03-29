@@ -1,23 +1,27 @@
 import axios from 'axios';
 import router from '../../router';
+import querystring from 'querystring';
 
-export function registra({ commit, dispatch }, form) {
+const axios_config = {
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+}
+export function registra({ _, dispatch }, form) {
     console.log(form.email);
     console.log(form.password);
 
-    axios.post("/api/utente/registra.php",
-        {
-            email: form.email,
-            password: form.password,
-            conf_password: form.conf_password,
-            lat_residenza: form.lat_residenza,
-            long_residenza: form.long_residenza
-        })
+    let payload = new FormData();
+    payload.set("email", form.email);
+    payload.set("password", form.password);
+    payload.set("conf_password", form.password_ripetuta);
+
+    axios.post("https://russelpopi.synology.me/api/utente/registra.php", payload)
         .then(response => {
             console.log("Utente registrato correttamente");
-            console.log(response),
+            console.log(response);
 
-                dipatch("user/entra", form);
+            dispatch("user/entra", form);
             //commit("Registra", { form });
             // TODO: setAxiosHeader(response.data.token)
         }).catch(reason => { console.error(reason); });
@@ -25,10 +29,15 @@ export function registra({ commit, dispatch }, form) {
 
 export function entra({ commit }, form) {
     console.log("Tentando il login...");
-    axios.post("/api/utente/entra.php", {
-        email: form.email,
-        password: form.password
-    })
+
+    //let payload = new FormData();
+    const payload = querystring.stringify({ 'email': form.email, 'password': form.password });
+    console.log(payload);
+    //payload.set("email", form.email);
+    //payload.set("password", form.password);
+
+
+    axios.post("https://russelpopi.synology.me/api/utente/entra.php", payload, axios_config)
         .then(response => {
             // TODO: setAxiosHeader(response.data.token)
             commit("Login", {

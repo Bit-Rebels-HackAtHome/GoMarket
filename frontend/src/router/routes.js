@@ -5,9 +5,9 @@ const routes = [
     component: () => import('layouts/LayoutPaginaIniziale.vue'),
     children: [
       { path: '', component: () => import('pages/PaginaIniziale.vue') },
-      { path: '/registrati', component: () => import('pages/Registra.vue') },
-      { path: '/entra', component: () => import('pages/Entra.vue') },
-      { path: '/coda/', component: () => import('pages/Coda.vue') }
+      { path: '/coda/', component: () => import('pages/Coda.vue') },
+      { path: '/registra-coda', component: () => import('pages/RegistraCoda') },
+
     ]
   },
 ]

@@ -25,12 +25,8 @@
         type="password"
         required
         label="Inserisci di nuovo la tua password"
-        v-bind:rules="Richiesto"
+        v-bind:rules="StessaPassword"
       />
-
-      <q-input filled v-model="lat_residenza" type="number" v-bind:rules="Richiesto" />
-
-      <q-input filled v-model="long_residenza" type="number" v-bind:rules="Richiesto" />
 
       <div>
         <q-btn label="Submit" type="submit" color="primary" />
@@ -47,9 +43,7 @@ export default {
     return {
       email: "",
       password: "",
-      password_ripetuta: "",
-      lat_residenza: 0.0,
-      long_residenza: 0.0
+      password_ripetuta: ""
     };
   },
   methods: {
@@ -61,6 +55,14 @@ export default {
   computed: {
     Richiesto() {
       return [v => !!v || "Il campo non può essere vuoto."];
+    },
+
+    StessaPassword() {
+      return [
+        v =>
+          this.password === this.password_ripetuta ||
+          "I campi devono essere uguali"
+      ];
     }
   }
 };
