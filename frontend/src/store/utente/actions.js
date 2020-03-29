@@ -8,13 +8,7 @@ const axios_config = {
     }
 }
 export function registra({ _, dispatch }, form) {
-    console.log(form.email);
-    console.log(form.password);
-
-    let payload = new FormData();
-    payload.set("email", form.email);
-    payload.set("password", form.password);
-    payload.set("conf_password", form.password_ripetuta);
+    const payload = querystring.stringify({ 'email': form.email, 'password': form.password, 'conf_password': form.conf_password });
 
     axios.post("https://russelpopi.synology.me/api/utente/registra.php", payload)
         .then(response => {
@@ -28,14 +22,8 @@ export function registra({ _, dispatch }, form) {
 }
 
 export function entra({ commit }, form) {
-    console.log("Tentando il login...");
 
-    //let payload = new FormData();
     const payload = querystring.stringify({ 'email': form.email, 'password': form.password });
-    console.log(payload);
-    //payload.set("email", form.email);
-    //payload.set("password", form.password);
-
 
     axios.post("https://russelpopi.synology.me/api/utente/entra.php", payload, axios_config)
         .then(response => {

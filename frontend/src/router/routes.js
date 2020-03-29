@@ -7,7 +7,7 @@ const routes = [
       { path: '', component: () => import('pages/PaginaIniziale.vue') },
       { path: '/coda/', component: () => import('pages/Coda.vue') },
       { path: '/registra-coda', component: () => import('pages/RegistraCoda') },
-
+      { path: '/impostazioni', component: () => import('pages/impostazioni.vue') }
     ]
   },
 ]

@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { EventBus } from "./eventBus.js";
+
 export default {
   name: "Registra",
   data() {
