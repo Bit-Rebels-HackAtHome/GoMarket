@@ -90,7 +90,7 @@ export default {
   methods: {
     richiediPersone() {
       this.$axios
-        .get("/api/supermercato.php?idSuper=" + this.id)
+        .get("https://russelpopi.synology.me/api/supermercato.php?idSuper=" + this.id)
         .then(response => {
           console.log("ok");
         })
@@ -107,7 +107,7 @@ export default {
       console.log("prenota");
       if (this.selected[h-8]) {
         this.$axios
-          .post("/api/supermercati/sprenota.php", {
+          .post("https://russelpopi.synology.me/api/supermercati/sprenota.php", {
             idSuper: this.id,
             orario: h
           })
@@ -124,7 +124,7 @@ export default {
           });
       } else {
         this.$axios
-          .post("/api/supermercati/prenota.php", {
+          .post("https://russelpopi.synology.me/api/supermercati/prenota.php", {
             idSuper: this.id,
             orario: h
           })
