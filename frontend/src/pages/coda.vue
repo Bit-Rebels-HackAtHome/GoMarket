@@ -23,7 +23,7 @@
         @click="prenota(h)"
       >
         <span>ore {{h}}:00</span>
-        <q-chip :color="persone[h-8]>0?'yellow':'green'">Prenotati: {{persone[h-8]}}</q-chip>
+        <q-chip :color="persone[h-8]>0?'yellow':'green'">Prenotati: {{persone[h-8]||0}}</q-chip>
         <q-checkbox color="red" v-model="selected[h-8]" v-show="selected[h-8]" />
       </q-chip>
     </q-list>
