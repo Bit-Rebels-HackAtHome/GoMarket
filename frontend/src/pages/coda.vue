@@ -37,11 +37,11 @@ export default {
   data() {
     return {
       persone: [],
-      name: this.$router.market.name,
-      address: this.$router.market.address,
-      longitudine: this.$router.market.long,
-      latitudine: this.$router.market.lat,
-      id: this.$router.market.id,
+      name: this.$router.primomarket.name,
+      address: this.$router.primomarket.address,
+      longitudine: this.$router.primomarket.long,
+      latitudine: this.$router.primomarket.lat,
+      id: this.$router.primomarket.id,
       selected: [
         false,
         false,
@@ -58,7 +58,8 @@ export default {
   },
   mounted() {
     EventBus.$on("nuovo-selezionato", superm => {
-      this.selected = [
+      
+    this.selected = [
         false,
         false,
         false,
@@ -77,6 +78,7 @@ export default {
       this.latitudine = superm.lat;
       this.id = superm.id;
 
+      
       this.richiediPersone();
     });
   },
@@ -88,10 +90,7 @@ export default {
   methods: {
     richiediPersone() {
       this.$axios
-        .get(
-          "https://russelpopi.synology.me/api/supermercato.php?idSuper=" +
-            this.id
-        )
+        .get("/api/supermercato.php?idSuper=" + this.id)
         .then(response => {
           console.log("ok");
         })
@@ -106,17 +105,14 @@ export default {
     },
     prenota(h) {
       console.log("prenota");
-      if (this.selected[h - 8]) {
+      if (this.selected[h-8]) {
         this.$axios
-          .post(
-            "https://russelpopi.synology.me/api/supermercati/sprenota.php",
-            {
-              idSuper: this.id,
-              orario: h
-            }
-          )
+          .post("/api/supermercati/sprenota.php", {
+            idSuper: this.id,
+            orario: h
+          })
           .then(response => {
-            this.selected.splice(h - 8, 1, false);
+            this.selected.splice(h-8,1,false);
             EventBus.$emit("nuovaCoda", {
               nome: this.name,
               indirizzo: this.address,
@@ -124,17 +120,17 @@ export default {
             });
           })
           .catch(error => {
-            this.selected.splice(h - 8, 1, false);
+            this.selected.splice(h-8,1,false);
           });
       } else {
         this.$axios
-          .post("https://russelpopi.synology.me/api/supermercati/prenota.php", {
+          .post("/api/supermercati/prenota.php", {
             idSuper: this.id,
             orario: h
           })
           .then(response => {
             console.log(response);
-            this.selected.splice(h - 8, 1, true);
+            this.selected.splice(h-8,1,true);
             EventBus.$emit("nuovaCoda", {
               nome: this.name,
               indirizzo: this.address,
@@ -142,7 +138,7 @@ export default {
             });
           })
           .catch(error => {
-            this.selected.splice(h - 8, 1, true);
+            this.selected.splice(h-8,1,true);
           });
       }
     }

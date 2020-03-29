@@ -96,7 +96,7 @@ module.exports = function (ctx) {
       open: true, // opens browser window automatically
       proxy: {
         '/maps': {
-          target: 'https://maps.google.com',
+          target: 'https://maps.googleapis.com',
           changeOrigin: true
         }
       }

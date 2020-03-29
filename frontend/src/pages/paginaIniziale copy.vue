@@ -6,13 +6,7 @@
     </div>
 
     <div class="column col-6 flex-center">
-      <q-btn
-        round
-        color="primary"
-        size="xl"
-        icon="gps_fixed"
-        @click="$router.push('/registra-coda')"
-      />
+      <q-btn round color="primary" size="xl" icon="gps_fixed" @click="$router.push('/registrati')" />
       <q-chip square>Registrati ad una coda</q-chip>
     </div>
 
@@ -27,7 +21,7 @@
       <q-chip square>Impostazioni</q-chip>
     </div>
 
-    <q-dialog v-model="showDialog">
+    <q-dialog v-model="showDialog" >
       <div class="row flex-center q-pa-sm" style="background-color:white">
         <div square class="q-pa-sm col-11">Supermercato: {{supermercato.nome}}</div>
         <div square class="q-pa-sm col-11">Indirizzo: {{supermercato.indirizzo}}</div>
@@ -41,32 +35,32 @@
 <script>
 import { EventBus } from "./eventBus.js";
 export default {
-  name: "PaginaInizialeAutenticata",
+  name: "paginaIniziale",
   data() {
     return {
-      showDialog: false,
+      showDialog:false,
       timer: false,
       code: [],
-      supermercato: {
-        nome: "",
-        indirizzo: "",
-        ora: ""
-      }
+      supermercato : {
+        nome:'',
+        indirizzo:'',
+        ora:''
+      },
     };
   },
   mounted() {
-    EventBus.$on("nuovaCoda", mk => {
+    EventBus.$on("nuovaCoda",(mk)=>{
       this.code.push(mk);
     });
   },
-  watch: {
-    code() {
-      if (!this.code.length) {
+  watch:{
+    code(){
+      if (!this.code.length){
         this.timer = false;
       }
       let min = 24;
-      this.code.forEach((elt, ind) => {
-        if (elt.ora < min) {
+      this.code.forEach((elt,ind)=>{
+        if(elt.ora<min){
           min = ind;
         }
       });
