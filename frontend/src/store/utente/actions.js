@@ -5,8 +5,10 @@ import querystring from 'querystring';
 const axios_config = {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
-    }
+    },
+    withCredentials: true
 }
+
 export function registra({ _, dispatch }, form) {
     const payload = querystring.stringify({ 'email': form.email, 'password': form.password, 'conf_password': form.conf_password });
 
@@ -33,8 +35,6 @@ export function entra({ commit }, form) {
                 impostazioni: null,
             });
             console.log("Utente loggato correttamente");
-            router.push("/");
-
         }).catch(response => {
             console.error("Impossibile fare login: ", response);
         });

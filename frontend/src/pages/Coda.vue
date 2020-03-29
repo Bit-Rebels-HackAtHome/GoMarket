@@ -32,6 +32,7 @@
 
 <script>
 import { EventBus } from "./eventBus.js";
+import querystring from "querystring";
 export default {
   name: "Coda",
   data() {
@@ -106,14 +107,27 @@ export default {
     },
     prenota(h) {
       console.log("prenota");
+
+      const axios_config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        withCredentials: true
+      };
+
+      const query = querystring.stringify({
+        idSuper: this.id,
+        orario: h
+      });
+
+      console.log(query);
+
       if (this.selected[h - 8]) {
         this.$axios
           .post(
             "https://russelpopi.synology.me/api/supermercati/sprenota.php",
-            {
-              idSuper: this.id,
-              orario: h
-            }
+            query,
+            axios_config
           )
           .then(response => {
             this.selected.splice(h - 8, 1, false);
@@ -128,10 +142,11 @@ export default {
           });
       } else {
         this.$axios
-          .post("https://russelpopi.synology.me/api/supermercati/prenota.php", {
-            idSuper: this.id,
-            orario: h
-          })
+          .post(
+            "https://russelpopi.synology.me/api/supermercati/prenota.php",
+            query,
+            axios_config
+          )
           .then(response => {
             console.log(response);
             this.selected.splice(h - 8, 1, true);
