@@ -54,6 +54,11 @@ module.exports = function (ctx) {
         'QItem',
         'QItemSection',
         'QItemLabel',
+        'QTabs',
+        'QTab',
+        'QRouteTab',
+        'QTabPanels',
+        'QTabPanel'
       ],
 
       directives: [],
@@ -87,12 +92,16 @@ module.exports = function (ctx) {
       https: false,
       port: 8080,
       open: true, // opens browser window automatically
-      proxy:{
-        '/maps': {
-          target: 'https://maps.googleapis.com',
+      proxy: {
+        '/api': {
+          target: 'https://2.229.191.232/api',
           changeOrigin: true,
+          secure: false
         },
-        
+        '/maps': {
+          target: 'https://maps.google.com',
+          changeOrigin: true
+        }
       }
     },
 
