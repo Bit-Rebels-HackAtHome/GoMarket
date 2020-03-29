@@ -32,7 +32,8 @@
         round 
         color="secondary" 
         size="xl" 
-        icon="settings" />
+        icon="settings" 
+        @click="$router.push('/impostazioni')"/>
         <q-chip 
         square>
         Impostazioni
