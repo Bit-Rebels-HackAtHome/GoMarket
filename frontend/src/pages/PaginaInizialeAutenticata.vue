@@ -40,6 +40,8 @@
 
 <script>
 import { EventBus } from "./eventBus.js";
+import querystring from "querystring";
+
 export default {
   name: "PaginaInizialeAutenticata",
   data() {
@@ -51,9 +53,9 @@ export default {
         nome: "",
         indirizzo: "",
         ora: "",
-        id:"",
+        id: ""
       },
-      index:0,
+      index: 0
     };
   },
   mounted() {
@@ -62,35 +64,55 @@ export default {
       this.refresh();
     });
   },
-  methods:{
-    refresh(){
-        if (!this.code.length) {
-          this.timer = false;
+  methods: {
+    refresh() {
+      console.log("Qui");
+      if (!this.code.length) {
+        this.timer = false;
+      }
+      let min = 0;
+      let minTime = 24;
+      this.code.forEach((elt, ind) => {
+        console.log(`elt: `, elt);
+        if (elt.ora < minTime) {
+          minTime = elt.ora;
+          min = ind;
         }
-        let min = 24;
-        this.code.forEach((elt, ind) => {
-          if (elt.ora < min) {
-            min = ind;
-          }
-        });
-        this.supermercato.nome = this.code[min].nome;
-        this.supermercato.indirizzo = this.code[min].indirizzo;
-        this.supermercato.ora = this.code[min].ora;
-        this.timer = this.code[min].h;
+      });
+      this.supermercato.nome = this.code[min].nome;
+      this.supermercato.indirizzo = this.code[min].indirizzo;
+      this.supermercato.ora = this.code[min].ora;
+      this.timer = this.supermercato.ora;
 
-        this.index = ind;
-      
+      this.index = min;
     },
-    sprenota(){
-       this.$axios
-          .post("/api/supermercati/sprenota.php", {
-            idSuper: this.supremercato.id,
-            orario: this.supermercato.h
-          });
-        
+    sprenota() {
+      const axios_config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        withCredentials: true
+      };
+
+      const query = querystring.stringify({
+        idSuper: this.supermercato.id,
+        orario: this.supermercato.h
+      });
+
+      this.$axios
+        .post(
+          "https://russelpopi.synology.me//api/supermercati/sprenota.php",
+          query,
+          axios_config
+        )
+        .then(response => {
           this.code.pop(this.index);
-      this.refresh();
-    },
+          this.refresh();
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   }
 };
 </script>

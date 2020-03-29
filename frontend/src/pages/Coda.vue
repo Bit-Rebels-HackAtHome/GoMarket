@@ -36,6 +36,7 @@ import querystring from "querystring";
 export default {
   name: "Coda",
   data() {
+    console.log(this.$router.market);
     return {
       persone: [],
       name: this.$router.market.name,
@@ -133,6 +134,7 @@ export default {
             this.selected.splice(h - 8, 1, false);
             EventBus.$emit("nuovaCoda", {
               nome: this.name,
+              id: this.id,
               indirizzo: this.address,
               ora: h
             });
@@ -152,6 +154,7 @@ export default {
             this.selected.splice(h - 8, 1, true);
             EventBus.$emit("nuovaCoda", {
               nome: this.name,
+              id: this.id,
               indirizzo: this.address,
               ora: h
             });
