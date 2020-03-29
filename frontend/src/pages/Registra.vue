@@ -21,6 +21,9 @@
 </template>
 
 <script>
+
+import {EventBus} from './eventBus.js';
+
 export default {
   name: "Registra",
 
@@ -65,7 +68,10 @@ export default {
     },
 
     showMarket(sm) {
-      this.$router.market = sm;
+      EventBus.$emit('nuovo-selezionato',sm);
+      if (!this.$router.primomarket) {
+        this.$router.primomarket = sm;
+      }
       this.$router.push("/coda");
     }
   },
