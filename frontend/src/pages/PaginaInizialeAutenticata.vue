@@ -32,7 +32,7 @@
         <div square class="q-pa-sm col-11">Supermercato: {{supermercato.nome}}</div>
         <div square class="q-pa-sm col-11">Indirizzo: {{supermercato.indirizzo}}</div>
         <div square class="q-pa-sm col-11">Ora: {{supermercato.ora}}:00</div>
-        <q-btn square size="sm" class="q-pa-sm col-3" color="red-10">Cancella</q-btn>
+        <q-btn square size="sm" class="q-pa-sm col-3" color="red-10" @click="sprenota">Cancella</q-btn>
       </div>
     </q-dialog>
   </q-page>
@@ -50,31 +50,47 @@ export default {
       supermercato: {
         nome: "",
         indirizzo: "",
-        ora: ""
-      }
+        ora: "",
+        id:"",
+      },
+      index:0,
     };
   },
   mounted() {
     EventBus.$on("nuovaCoda", mk => {
       this.code.push(mk);
+      this.refresh();
     });
   },
-  watch: {
-    code() {
-      if (!this.code.length) {
-        this.timer = false;
-      }
-      let min = 24;
-      this.code.forEach((elt, ind) => {
-        if (elt.ora < min) {
-          min = ind;
+  methods:{
+    refresh(){
+        if (!this.code.length) {
+          this.timer = false;
         }
-      });
-      this.supermercato.nome = this.code[min].nome;
-      this.supermercato.indirizzo = this.code[min].indirizzo;
-      this.supermercato.ora = this.code[min].ora;
-      this.timer = this.code[min].h;
-    }
+        let min = 24;
+        this.code.forEach((elt, ind) => {
+          if (elt.ora < min) {
+            min = ind;
+          }
+        });
+        this.supermercato.nome = this.code[min].nome;
+        this.supermercato.indirizzo = this.code[min].indirizzo;
+        this.supermercato.ora = this.code[min].ora;
+        this.timer = this.code[min].h;
+
+        this.index = ind;
+      
+    },
+    sprenota(){
+       this.$axios
+          .post("/api/supermercati/sprenota.php", {
+            idSuper: this.supremercato.id,
+            orario: this.supermercato.h
+          });
+        
+          this.code.pop(this.index);
+      this.refresh();
+    },
   }
 };
 </script>
