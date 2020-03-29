@@ -54,7 +54,8 @@ module.exports = function (ctx) {
         'QItem',
         'QItemSection',
         'QItemLabel',
-        'QCheckbox'
+        'QCheckbox',
+        'QDialog'
       ],
 
       directives: [],
@@ -88,12 +89,16 @@ module.exports = function (ctx) {
       https: false,
       port: 8080,
       open: true, // opens browser window automatically
-      proxy:{
+      proxy: {
         '/maps': {
           target: 'https://maps.googleapis.com',
           changeOrigin: true,
         },
-        
+        '/api': {
+          target: 'https://russelpopi.synology.me',
+          changeOrigin: true,
+        }
+
       }
     },
 
