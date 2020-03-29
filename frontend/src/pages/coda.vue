@@ -21,7 +21,7 @@
         color="blue"
         text-color="white"
         >
-                ore : {{h}}:00
+                ore {{h}}:00
         </q-chip>
       </q-list>
   </q-page>

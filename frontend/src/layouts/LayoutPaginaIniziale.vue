@@ -55,7 +55,9 @@
     <q-page-container>
       
     <transition name="fade" appear mode="out-in">
-      <router-view />
+      <keep-alive>
+       <router-view :key="$route.fullPath"/>
+      </keep-alive>
     </transition>
     </q-page-container>
   </q-layout>
