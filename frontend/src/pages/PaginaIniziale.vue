@@ -1,5 +1,5 @@
 <template>
-  <pagina-iniziale-autenticata v-if="$store.email" />
+  <pagina-iniziale-autenticata v-if="$store.state.utente.utente !== null" />
   <pagina-iniziale-non-autenticata v-else />
 </template>
 

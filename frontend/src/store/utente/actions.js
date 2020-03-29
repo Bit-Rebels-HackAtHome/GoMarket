@@ -32,9 +32,8 @@ export function entra({ commit }, form) {
         .then(response => {
             // TODO: setAxiosHeader(response.data.token)
             commit("Login", {
-                email: form.email,
-                lat_residenza: form.lat_residenza,
-                long_residenza: form.long_residenza,
+                utente: form.email,
+                impostazioni: null,
             });
             console.log("Utente loggato correttamente");
             router.push("/");

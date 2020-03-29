@@ -94,9 +94,8 @@ module.exports = function (ctx) {
       open: true, // opens browser window automatically
       proxy: {
         '/api': {
-          target: 'https://2.229.191.232/api',
+          target: 'https://russelpopi.synology.me/api',
           changeOrigin: true,
-          secure: false
         },
         '/maps': {
           target: 'https://maps.google.com',
