@@ -54,6 +54,11 @@ module.exports = function (ctx) {
         'QItem',
         'QItemSection',
         'QItemLabel',
+        'QTabs',
+        'QTab',
+        'QRouteTab',
+        'QTabPanels',
+        'QTabPanel',
         'QCheckbox',
         'QDialog'
       ],
@@ -91,14 +96,9 @@ module.exports = function (ctx) {
       open: true, // opens browser window automatically
       proxy: {
         '/maps': {
-          target: 'https://maps.googleapis.com',
-          changeOrigin: true,
-        },
-        '/api': {
-          target: 'https://russelpopi.synology.me',
-          changeOrigin: true,
+          target: 'https://maps.google.com',
+          changeOrigin: true
         }
-
       }
     },
 
