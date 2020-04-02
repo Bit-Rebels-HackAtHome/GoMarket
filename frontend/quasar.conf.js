@@ -49,7 +49,18 @@ module.exports = function (ctx) {
         'QChip',
         'QCard',
         'QForm',
-        'QInput'
+        'QInput',
+        'QList',
+        'QItem',
+        'QItemSection',
+        'QItemLabel',
+        'QTabs',
+        'QTab',
+        'QRouteTab',
+        'QTabPanels',
+        'QTabPanel',
+        'QCheckbox',
+        'QDialog'
       ],
 
       directives: [],
@@ -84,13 +95,14 @@ module.exports = function (ctx) {
       port: 8080,
       open: true, // opens browser window automatically
       proxy: {
+        '/maps': {
+          target: 'https://maps.googleapis.com',
         '/api': {
           target: 'https://2.229.191.232',
           changeOrigin: true,
         },
         '/maps': {
           target: 'https://maps.google.com',
-          changeOrigin: true
         }
       }
     },

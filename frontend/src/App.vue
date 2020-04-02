@@ -1,16 +1,16 @@
 <template>
   <div id="q-app">
-      <router-view />
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
+  name: "App",
 
-  mounted(){
-    this.$router.replace('/entra');
+  mounted() {
+    //this.$router.replace('/entra');
   }
-}
+};
 </script>
 

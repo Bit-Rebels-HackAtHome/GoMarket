@@ -3,16 +3,6 @@
     <q-header elevated>
       <q-toolbar>
 
-
-        <q-btn
-          v-show="$route.path == '/registrati'"
-          flat
-          dense
-          round
-          icon="arrow_back"
-          @click="$router.go(-1)"          
-        />
-
         <q-btn
           v-show="$route.path == '/'"
           flat
@@ -21,6 +11,15 @@
           icon="menu"
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
+        />
+        
+        <q-btn
+          v-show="$route.path != '/' && $route.path != '/entra'"
+          flat
+          dense
+          round
+          icon="arrow_back"
+          @click="$router.go(-1)"          
         />
 
         <q-toolbar-title>
@@ -34,7 +33,7 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
+      v-show="leftDrawerOpen"
       bordered
       content-class="bg-grey-1"
     >
@@ -56,7 +55,9 @@
     <q-page-container>
       
     <transition name="fade" appear mode="out-in">
-      <router-view />
+      <keep-alive>
+       <router-view :key="$route.fullPath"/>
+      </keep-alive>
     </transition>
     </q-page-container>
   </q-layout>

@@ -1,6 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
-
+  <div>
     <q-form ref="loginForm" @submit="onSubmit" class="g-gutter-sm">
       <q-input
         filled
@@ -13,21 +12,12 @@
 
       <q-input filled required v-model="password" type="password" label="La tua password" />
 
-      <q-input
-        filled
-        v-model="password_ripetuta"
-        type="password"
-        required
-        label="Inserisci di nuovo la tua password"
-        v-bind:rules="Richiesto"
-      />
-
       <div>
         <q-btn label="Submit" type="submit" color="primary" />
         <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
       </div>
     </q-form>
-  </q-page>
+  </div>
 </template>
 
 <script>
@@ -37,15 +27,15 @@ export default {
   data() {
     return {
       email: "",
-      password: "",
-      password_ripetuta: ""
+      password: ""
     };
   },
 
   methods: {
     onSubmit: function(event) {
       console.log(event);
-      this.$router.replace('/');
+      this.$store.dispatch("utente/entra", this);
+      //this.$router.replace("/");
     }
   },
 
