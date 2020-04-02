@@ -1,39 +1,31 @@
 <template>
-  <q-page class="flex flex-center">
-    <!--
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-full.svg"
-    >
-    -->
+  <q-form ref="loginForm" @submit="onSubmit" class="g-gutter-sm">
+    <q-input
+      filled
+      v-model="email"
+      label="Il tuo indirizzo e-mail"
+      hint="pippo@pluto.it"
+      lazy-rules
+      v-bind:rules="Richiesto"
+    />
 
-    <q-form ref="loginForm" @submit="onSubmit" class="g-gutter-sm">
-      <q-input
-        filled
-        v-model="email"
-        label="Il tuo indirizzo e-mail"
-        hint="pippo@pluto.it"
-        lazy-rules
-        v-bind:rules="Richiesto"
-      />
+    <q-input filled required v-model="password" type="password" label="La tua password" />
 
-      <q-input filled required v-model="password" type="password" label="La tua password" />
+    <q-separator />
+    <q-input
+      filled
+      v-model="password_ripetuta"
+      type="password"
+      required
+      label="Inserisci di nuovo la tua password"
+      v-bind:rules="StessaPassword"
+    />
 
-      <q-input
-        filled
-        v-model="password_ripetuta"
-        type="password"
-        required
-        label="Inserisci di nuovo la tua password"
-        v-bind:rules="StessaPassword"
-      />
-
-      <div>
-        <q-btn label="Submit" type="submit" color="primary" />
-        <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
-      </div>
-    </q-form>
-  </q-page>
+    <div>
+      <q-btn label="Submit" type="submit" color="primary" />
+      <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+    </div>
+  </q-form>
 </template>
 
 <script>

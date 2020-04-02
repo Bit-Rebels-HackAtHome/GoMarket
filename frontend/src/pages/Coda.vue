@@ -60,18 +60,10 @@ export default {
   },
   mounted() {
     EventBus.$on("nuovo-selezionato", superm => {
-      this.selected = [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-      ];
+      console.log("nuovo selezionato");
+      for (var i = 0; i < 10; i++) this.selected.pop();
+
+      for (var i = 0; i < 10; i++) this.selected.push(false);
 
       this.name = superm.name;
       this.address = superm.address;
