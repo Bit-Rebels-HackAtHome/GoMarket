@@ -97,7 +97,12 @@ module.exports = function (ctx) {
       proxy: {
         '/maps': {
           target: 'https://maps.googleapis.com',
-          changeOrigin: true
+        '/api': {
+          target: 'https://2.229.191.232',
+          changeOrigin: true,
+        },
+        '/maps': {
+          target: 'https://maps.google.com',
         }
       }
     },

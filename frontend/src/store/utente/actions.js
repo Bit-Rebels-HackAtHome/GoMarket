@@ -37,5 +37,19 @@ export function entra({ commit }, form) {
             console.log("Utente loggato correttamente");
         }).catch(response => {
             console.error("Impossibile fare login: ", response);
+
+    console.log("Tentando il login...");
+    axios.post("/api/utente/entra.php", form)
+        .then(response => {
+            // TODO: setAxiosHeader(response.data.token)
+            commit("Login", {
+                utente: form.utente,
+                lat: form.lat_residenza,
+                long: form.long_residenza,
+                session_token: null
+            });
+            console.log("Utente registrato correttamente");
+        }).catch(response => {
+            console.error("Impossibile creare un nuovo utente: ", response);
         });
 }
